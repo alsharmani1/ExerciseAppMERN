@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Exercise = require('../models/Exercise');
 
-router.get('/exercise', async (req, res) => {
+router.get('/exercises', async (req, res) => {
     try {
         const getExercises = await Exercise.find();
         res.json(getExercises);
@@ -27,7 +27,7 @@ router.post('/exercises/add', async (req, res) => {
     }
 });
 
-router.get('/exercise/:id', async (req, res) => {
+router.get('/exercises/:id', async (req, res) => {
     try {
         const updateExercises = await Exercise.findById(req.params.id);
         res.json(updateExercises);
@@ -36,7 +36,7 @@ router.get('/exercise/:id', async (req, res) => {
     }
 });
 
-router.delete('/exercise/:id', async (req, res) => {
+router.delete('/exercises/:id', async (req, res) => {
     try {
         const deleteExercises = await Exercise.findByIdAndDelete(req.params.id);
         res.json('Exercise Deleted');

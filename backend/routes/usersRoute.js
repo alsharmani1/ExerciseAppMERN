@@ -12,8 +12,8 @@ router.get('/users', async (req, res) => {
 });
 
 router.post('/users/add', async (req, res) => {
-    const username = req.body.username;
-    const newUser = new Users({ username })
+    
+    const newUser = new Users({ username: req.body.username })
     try {
         await newUser.save();
         res.send('User Added');
@@ -22,5 +22,13 @@ router.post('/users/add', async (req, res) => {
     }
 });
 
+router.delete('/users/:id', async (req, res) => {
+    try {
+        const deleteUser = await Users.findByIdAndDelete(req.params.id);
+        res.json('Exercise Deleted');
+    } catch (err) {
+        res.status(400).json('Error: ' + err);
+    }
+});
 
 module.exports = router;
